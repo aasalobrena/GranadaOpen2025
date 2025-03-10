@@ -1,0 +1,5 @@
+SetExtension("scorecardPaperSize", "a4", "CompetitionConfig", "groupifier")
+SetExtension("scorecardOrder", "stacked", "CompetitionConfig", "groupifier")
+SetExtension("printStations", true, "CompetitionConfig", "groupifier")
+SetExtension("printScorecardsCoverSheets", true, "CompetitionConfig", "groupifier")
+SetExtension("localNamesFirst", true, "CompetitionConfig", "groupifier")
