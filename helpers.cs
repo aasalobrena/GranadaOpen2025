@@ -1,14 +1,14 @@
 Define("CompetitorsPerGroup",
 	If((Mod(Length(Persons(CompetingInRound({1, Round}))), Length(Groups({1, Round}))) == 0),
 		(Length(Persons(CompetingInRound({1, Round}))) / Length(Groups({1, Round}))),
-		(IntDivision(Length(Persons(CompetingInRound({1, Round}))), Length(Groups({1, Round}))) + 1)
+		(IntDivide(Length(Persons(CompetingInRound({1, Round}))), Length(Groups({1, Round}))) + 1)
 	)
 )
 
 # Useful Booleans(Person)
 
 Define("ChillsEvent", (StringProperty("chill") == EventId({1, Event})))
-Define("CanStaff", And(Registered(), Not(HasRole("delegate")), Not(HasRole("trainee-delegate")), Not(HasRole("organizer"))))
+Define("CanStaff", And(Registered(), Not(HasRole("delegate")), Not(HasRole("trainee-delegate")), Not(HasRole("organizer")), (WcaId() != "2013ROCA01"), (WcaId() != "2014TEJA07")))
 Define("CanStaffEvent", And(CanStaff(), Not(ChillsEvent({1, Event}))))
 Define("IsInTop25Psych", And(CompetingIn({1, Event}), (PsychSheetPosition({1, Event}) < (0.25 * Length(Persons(CompetingIn({1, Event})))))))
 Define("CanScrambleEvent", And(CanStaffEvent({1, Event}), Or(IsInTop25Psych({1, Event}), And(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), IsInTop25Psych(_333)))))
@@ -23,7 +23,7 @@ Define("ScramblesFinal", And((Length(Persons(CompetingInRound({1, Round}))) < Ps
 
 # AssignmentSets
 
-Define("ChillSet", [AssignmentSet(EventId(EventForRound({1, Event})), (StringProperty("chill") == EventId(EventForRound({1, Round}))), (GroupNumber() == Length(Groups({1, Round}))))])
+Define("ChillSet", [AssignmentSet(EventId(EventForRound({1, Round})), (StringProperty("chill") == EventId(EventForRound({1, Round}))), (GroupNumber() == Length(Groups({1, Round}))))])
 Define("DelegatesSet", [AssignmentSet("delegates", Or(HasRole("delegate"), HasRole("trainee-delegate")), true)])
 Define("OrganizersSet", [AssignmentSet("organizers", HasRole("organizer"), true)])
 Define("DeLaTorreSet", [AssignmentSet("delatorre", Or((WcaId() == "2023LAME03"), (WcaId() == "2024LAME01")), true)])
@@ -99,7 +99,6 @@ Define("AssignCompetitors",
 
 # JobSets
 
-# CUIDADO: Le he metido {1, Round} que antes no lo tenía
 Define("DefaultJobs",
 	[
 		Job("runner", 3, eligibility=CanStaffEvent(EventForRound({1, Round}))),
