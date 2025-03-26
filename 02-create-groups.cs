@@ -11,6 +11,7 @@ CreateGroupsInRoom(_333bf-r1, 2, 2025-05-10T12:00, 2025-05-10T12:40)
 CreateGroupsInRoom(_clock-r1, 3, 2025-05-10T12:40, 2025-05-10T13:40)
 
 CreateGroupsInRoom(_222-r1, 5, 2025-05-10T15:10, 2025-05-10T16:25)
+CreateGroups(_333mbf-r1-a1, 1, "Aula auxiliar", 2025-05-10T15:55, 2025-05-10T17:05, useStageName=false)
 CreateGroupsInRoom(_333-r1, 5, 2025-05-10T16:25, 2025-05-10T17:55)
 CreateGroupsInRoom(_skewb-r1, 3, 2025-05-10T17:55, 2025-05-10T18:55)
 CreateGroupsInRoom(_sq1-r2, 2, 2025-05-10T18:55, 2025-05-10T19:35)

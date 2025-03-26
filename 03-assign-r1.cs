@@ -1,5 +1,14 @@
 #include "helpers.cs"
 
+# 1 is other-checkin
+ManuallyAssignActivity(1, Persons(true), "staff-checkin")
+
+# 2 is other-tutorial
+ManuallyAssignActivity(2, Persons(IsNull(WcaId())), "staff-Alumno")
+ManuallyAssignActivity(2, [2018CAST11], "staff-Profesor")
+ManuallyAssignActivity(2, [2010GARC02])
+ManuallyAssignActivity(2, [2016GALA04], "staff-judge")
+
 Map(Events(), AddResults(RoundForEvent(1), Persons(CompetingIn())))
 
 AssignScramblers(_pyram-r1, 1, 3)
@@ -67,14 +76,15 @@ AssignStaff(
 )
 
 # 8 is other-lunch
-ManuallyAssignActivity(7, [2013ROCA01], "staff-Chef")
-ManuallyAssignActivity(7, Persons(In("Lomoqueso", ArrayProperty("food"))), "staff-Lomoqueso")
-ManuallyAssignActivity(7, Persons(In("Hamburguesa", ArrayProperty("food"))), "staff-Hamburguesa")
-ManuallyAssignActivity(7, Persons(In("Perrito", ArrayProperty("food"))), "staff-Perrito")
-ManuallyAssignActivity(7, Persons(In("Otro", ArrayProperty("food"))), "staff-Otro")
+ManuallyAssignActivity(8, [2013ROCA01], "staff-Chef")
+ManuallyAssignActivity(8, Persons(In("Lomoqueso", ArrayProperty("food"))), "staff-Lomoqueso")
+ManuallyAssignActivity(8, Persons(In("Hamburguesa", ArrayProperty("food"))), "staff-Hamburguesa")
+ManuallyAssignActivity(8, Persons(In("Perrito", ArrayProperty("food"))), "staff-Perrito")
+ManuallyAssignActivity(8, Persons(In("Otro", ArrayProperty("food"))), "staff-Otro")
 
 # 26 is other-multi
-ManuallyAssignActivity(30, Persons(CompetingIn(_333mbf)))
+ManuallyAssignActivity(26, Persons(CompetingIn(_333mbf)))
+AssignGroups(_333mbf-r1, EveryoneSet(), attemptNumber=1)
 
 AssignScramblers(_222-r1, 1, 3)
 AssignScramblers(_222-r1, 2, 3)
@@ -91,14 +101,17 @@ AssignStaff(
 	DefaultStaffScorers(_222-r1)
 )
 
-# MULTI
-
 AssignScramblers(_333-r1, 1, 3)
 AssignScramblers(_333-r1, 2, 3)
 AssignScramblers(_333-r1, 3, 3)
 AssignScramblers(_333-r1, 4, 3)
 AssignScramblers(_333-r1, 5, 3)
-AssignCompetitors(_333-r1)
+AssignGroups(_333-r1,
+	Concat(ChillSet(_333-r1), [AssignmentSet("delegates", HasRole("delegate"), In(GroupNumber(), [4, 5]))], OrganizersSet(), DeLaTorreSet(), UkuSet(), TopCompetitorsSet(_333-r1), EveryoneSet()),
+	ScramblingCompetingScorers(_333-r1),
+	[StationAssignmentRule(true, "ascending", PsychSheetPosition(_333))],
+	overwrite=true
+)
 ReAssignScramblers(_333-r1)
 AssignStaff(
 	_333-r1,
