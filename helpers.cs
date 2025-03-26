@@ -47,7 +47,7 @@ Define("DefaultStaffScorers",
 		#ConsecutiveJobScorer(90, -3, 0),
 		#FollowingGroupScorer(-50),
 		ComputedWeightScorer(If(IsNull(WcaId()), 0, 10), ["judge", "runner"]),
-		ComputedWeightScorer((-10 * LengthOfJobs()), ["judge", "runner"]),
+		ComputedWeightScorer((-10 * LengthOfJobs(["staff-judge", "staff-runner", "staff-scrambler", "staff-delegate"])), ["judge", "runner"]),
 		ComputedWeightScorer(If(CompetingInRound({1, Round}), 999, -999), ["judge", "runner"]),
 		ComputedWeightScorer(If(CompetingIn(EventForRound({1, Round})), 999, -999), ["judge", "runner"])
 	]

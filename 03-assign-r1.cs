@@ -66,7 +66,15 @@ AssignStaff(
 	DefaultStaffScorers(_clock-r1)
 )
 
-# COMIDA
+# 8 is other-lunch
+ManuallyAssignActivity(7, [2013ROCA01], "staff-Chef")
+ManuallyAssignActivity(7, Persons(In("Lomoqueso", ArrayProperty("food"))), "staff-Lomoqueso")
+ManuallyAssignActivity(7, Persons(In("Hamburguesa", ArrayProperty("food"))), "staff-Hamburguesa")
+ManuallyAssignActivity(7, Persons(In("Perrito", ArrayProperty("food"))), "staff-Perrito")
+ManuallyAssignActivity(7, Persons(In("Otro", ArrayProperty("food"))), "staff-Otro")
+
+# 26 is other-multi
+ManuallyAssignActivity(30, Persons(CompetingIn(_333mbf)))
 
 AssignScramblers(_222-r1, 1, 3)
 AssignScramblers(_222-r1, 2, 3)
