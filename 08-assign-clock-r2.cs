@@ -7,6 +7,6 @@ AssignStaff(
 	_clock-r2,
 	true,
 	Persons(true),
-	FinalJobs(_clock-r2, 2),
+	FinalJobs(_clock-r2, 3),
 	DefaultStaffScorers(_clock-r2)
 )
