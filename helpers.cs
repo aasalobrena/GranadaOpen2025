@@ -40,6 +40,8 @@ Define("ScramblingCompetingScorers",
 	]
 )
 
+Define("DefaultStaffCodes", ["staff-judge", "staff-runner", "staff-scrambler", "staff-delegate", "staff-dataentry"])
+
 Define("DefaultStaffScorers",
 	[
 		#PriorAssignmentScorer(-3, 3),
@@ -47,7 +49,7 @@ Define("DefaultStaffScorers",
 		#ConsecutiveJobScorer(90, -3, 0),
 		#FollowingGroupScorer(-50),
 		ComputedWeightScorer(If(IsNull(WcaId()), 0, 1), ["judge", "runner"]),
-		ComputedWeightScorer((-1 * LengthOfJobs(["staff-judge", "staff-runner", "staff-scrambler", "staff-delegate"])), ["judge", "runner"]),
+		ComputedWeightScorer((-1 * LengthOfJobs(DefaultStaffCodes())), ["judge", "runner"]),
 		ComputedWeightScorer(If(CompetingInRound({1, Round}), 999, -999), ["judge", "runner"]),
 		ComputedWeightScorer(If(CompetingIn(EventForRound({1, Round})), 999, -999), ["judge", "runner"])
 	]

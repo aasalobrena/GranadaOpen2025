@@ -27,6 +27,7 @@ AssignStaff(
 ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r1, "Salón de actos", 2, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r1, "Salón de actos", 3, "staff-Chill")
+AssignStaff(_pyram-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_pyram-r1))
 
 AssignScramblers(_444-r1, 1, 3)
 AssignScramblers(_444-r1, 2, 3)
@@ -42,6 +43,7 @@ AssignStaff(
 )
 ManuallyAssign(Persons(ChillsEvent(_444)), _444-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_444)), _444-r1, "Salón de actos", 2, "staff-Chill")
+AssignStaff(_444-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_444-r1))
 
 AssignScramblers(_sq1-r1, 1, 3)
 AssignScramblers(_sq1-r1, 2, 3)
@@ -55,6 +57,7 @@ AssignStaff(
 	DefaultStaffScorers(_sq1-r1)
 )
 ManuallyAssign(Persons(ChillsEvent(_sq1)), _sq1-r1, "Salón de actos", 1, "staff-Chill")
+AssignStaff(_sq1-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_sq1-r1))
 
 AssignScramblers(_333bf-r1, 1, 2)
 AssignScramblers(_333bf-r1, 2, 2)
@@ -68,6 +71,7 @@ AssignStaff(
 	DefaultStaffScorers(_333bf-r1)
 )
 ManuallyAssign(Persons(ChillsEvent(_333bf)), _333bf-r1, "Salón de actos", 1, "staff-Chill")
+AssignStaff(_333bf-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_333bf-r1))
 
 AssignScramblers(_clock-r1, 1, 3)
 AssignScramblers(_clock-r1, 2, 3)
@@ -83,6 +87,7 @@ AssignStaff(
 )
 ManuallyAssign(Persons(ChillsEvent(_clock)), _clock-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_clock)), _clock-r1, "Salón de actos", 2, "staff-Chill")
+AssignStaff(_clock-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_clock-r1))
 
 # 8 is other-lunch
 ManuallyAssignActivity(8, [2013ROCA01], "staff-Chef")
@@ -113,6 +118,7 @@ ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 1, "staff
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 2, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 3, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 4, "staff-Chill")
+AssignStaff(_222-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_222-r1))
 
 AssignScramblersWithMbf(_333-r1, 1, 3)
 AssignScramblersWithMbf(_333-r1, 2, 3)
@@ -137,6 +143,7 @@ ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 1, "staff
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 2, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 3, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 4, "staff-Chill")
+AssignStaff(_333-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_333-r1))
 
 AssignScramblers(_skewb-r1, 1, 3)
 AssignScramblers(_skewb-r1, 2, 3)
@@ -152,11 +159,12 @@ AssignStaff(
 )
 ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 2, "staff-Chill")
+AssignStaff(_skewb-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_skewb-r1))
 
 Table(
-  Sort(Persons(Registered()), (LengthOfJobs() / LengthOfJobs("competitor"))),
-  [Column("Name", Name()), Column("Ratio", (LengthOfJobs() / LengthOfJobs("competitor")))])
+  Sort(Persons(Registered()), (LengthOfJobs(DefaultStaffCodes()) / LengthOfJobs("competitor"))),
+  [Column("Name", Name()), Column("Ratio", (LengthOfJobs(DefaultStaffCodes()) / LengthOfJobs("competitor")))])
   
 Table(
-  Sort(Persons(Registered()), LengthOfJobs()),
-  [Column("Name", Name()), Column("Horas", LengthOfJobs())])
+  Sort(Persons(Registered()), LengthOfJobs(DefaultStaffCodes())),
+  [Column("Name", Name()), Column("Horas", LengthOfJobs(DefaultStaffCodes()))])
