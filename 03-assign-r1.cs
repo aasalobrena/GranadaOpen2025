@@ -160,11 +160,3 @@ AssignStaff(
 ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 2, "staff-Chill")
 AssignStaff(_skewb-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_skewb-r1))
-
-Table(
-  Sort(Persons(Registered()), (LengthOfJobs(DefaultStaffCodes()) / LengthOfJobs("competitor"))),
-  [Column("Name", Name()), Column("Ratio", (LengthOfJobs(DefaultStaffCodes()) / LengthOfJobs("competitor")))])
-  
-Table(
-  Sort(Persons(Registered()), LengthOfJobs(DefaultStaffCodes())),
-  [Column("Name", Name()), Column("Horas", LengthOfJobs(DefaultStaffCodes()))])
