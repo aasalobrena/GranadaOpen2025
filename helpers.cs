@@ -12,7 +12,7 @@ Define("CanStaff", And(Registered(), Not(HasRole("delegate")), Not(HasRole("trai
 Define("CanStaffEvent", And(CanStaff(), Not(ChillsEvent({1, Event}))))
 Define("IsInTop25Psych", And(CompetingIn({1, Event}), (PsychSheetPosition({1, Event}) < (0.25 * Length(Persons(CompetingIn({1, Event})))))))
 Define("CanScrambleEvent", And(CanStaffEvent({1, Event}), Or(IsInTop25Psych({1, Event}), And(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), IsInTop25Psych(_333)))))
-Define("CanScrambleEventRelaxed", In(Slice(Sort(Persons(And(CanStaffEvent({1, Event}), CompetingIn({1, Event}))), If(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), PsychSheetPosition(_333), PsychSheetPosition({1, Event}))), 0, {2, Number})))
+Define("CanScrambleEventRelaxed", In(Slice(Sort(Persons(And(CanStaffEvent({1, Event}), CompetingIn({1, Event}), If({3, Boolean}, Not(CompetingIn(_333mbf)), true))), If(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), PsychSheetPosition(_333), PsychSheetPosition({1, Event}))), 0, {2, Number})))
 Define("IsTopScrambler", (NumberProperty(("scrambles-" + RoundId({1, Round}))) == Length(Groups({1, Round}))))
 # USAR ESTOS EN PROD
 # Define("IsTopCompetitor", If((RoundNumber({1, Round}) == 1), (PsychSheetPosition(EventForRound({1, Round})) <= CompetitorsPerGroup({1, Round})), (RoundPosition({1, Round}) <= CompetitorsPerGroup({1, Round}))))
@@ -63,7 +63,24 @@ Define("AssignScramblers",
 			If(
 				(Length(Persons(CanScrambleEvent(EventForRound({1, Round})))) >= ({3, Number} * Length(Groups({1, Round})))),
 				Persons(And(CanScrambleEvent(EventForRound({1, Round})), (NumJobsInRound({1, Round}, "scrambler") == 0))),
-				Persons(And(CanScrambleEventRelaxed(EventForRound({1, Round}), ({3, Number} * Length(Groups({1, Round})))), (NumJobsInRound({1, Round}, "scrambler") == 0)))
+				Persons(And(CanScrambleEventRelaxed(EventForRound({1, Round}), ({3, Number} * Length(Groups({1, Round}))), false), (NumJobsInRound({1, Round}, "scrambler") == 0)))
+			),
+			[Job("scrambler", {3, Number})],
+			DefaultStaffScorers({1, Round})
+		),
+		SetProperty(Persons(And((NumJobsInRound({1, Round}) > 0), Not(HasProperty(("scrambles-" + RoundId({1, Round})))))), ("scrambles-" + RoundId({1, Round})), {2, Number})
+	)
+)
+
+Define("AssignScramblersWithMbf",
+	Tuple(
+		AssignStaff(
+			{1, Round},
+			(GroupNumber() == {2, Number}),
+			If(
+				(Length(Persons(And(CanScrambleEvent(EventForRound({1, Round})), CompetingIn(_333mbf)))) >= ({3, Number} * Length(Groups({1, Round})))),
+				Persons(And(CanScrambleEvent(EventForRound({1, Round})), (NumJobsInRound({1, Round}, "scrambler") == 0), Not(CompetingIn(_333mbf)))),
+				Persons(And(CanScrambleEventRelaxed(EventForRound({1, Round}), ({3, Number} * Length(Groups({1, Round}))), true), (NumJobsInRound({1, Round}, "scrambler") == 0), Not(CompetingIn(_333mbf))))
 			),
 			[Job("scrambler", {3, Number})],
 			DefaultStaffScorers({1, Round})

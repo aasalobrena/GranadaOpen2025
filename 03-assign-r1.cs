@@ -1,7 +1,7 @@
 #include "helpers.cs"
 
 # 1 is other-checkin
-ManuallyAssignActivity(1, Persons(true), "staff-checkin")
+ManuallyAssignActivity(1, Persons(true))
 
 # 2 is other-tutorial
 ManuallyAssignActivity(2, Persons(IsNull(WcaId())), "staff-Alumno")
@@ -24,6 +24,9 @@ AssignStaff(
 	DefaultJobs(_pyram-r1),
 	DefaultStaffScorers(_pyram-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r1, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r1, "Salón de actos", 2, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r1, "Salón de actos", 3, "staff-Chill")
 
 AssignScramblers(_444-r1, 1, 3)
 AssignScramblers(_444-r1, 2, 3)
@@ -37,6 +40,8 @@ AssignStaff(
 	DefaultJobs(_444-r1),
 	DefaultStaffScorers(_444-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_444)), _444-r1, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_444)), _444-r1, "Salón de actos", 2, "staff-Chill")
 
 AssignScramblers(_sq1-r1, 1, 3)
 AssignScramblers(_sq1-r1, 2, 3)
@@ -49,6 +54,7 @@ AssignStaff(
 	DefaultJobs(_sq1-r1),
 	DefaultStaffScorers(_sq1-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_sq1)), _sq1-r1, "Salón de actos", 1, "staff-Chill")
 
 AssignScramblers(_333bf-r1, 1, 2)
 AssignScramblers(_333bf-r1, 2, 2)
@@ -61,6 +67,7 @@ AssignStaff(
 	DefaultJobs(_333bf-r1),
 	DefaultStaffScorers(_333bf-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_333bf)), _333bf-r1, "Salón de actos", 1, "staff-Chill")
 
 AssignScramblers(_clock-r1, 1, 3)
 AssignScramblers(_clock-r1, 2, 3)
@@ -74,6 +81,8 @@ AssignStaff(
 	DefaultJobs(_clock-r1),
 	DefaultStaffScorers(_clock-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_clock)), _clock-r1, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_clock)), _clock-r1, "Salón de actos", 2, "staff-Chill")
 
 # 8 is other-lunch
 ManuallyAssignActivity(8, [2013ROCA01], "staff-Chef")
@@ -86,11 +95,11 @@ ManuallyAssignActivity(8, Persons(In("Otro", ArrayProperty("food"))), "staff-Otr
 ManuallyAssignActivity(26, Persons(CompetingIn(_333mbf)))
 AssignGroups(_333mbf-r1, EveryoneSet(), attemptNumber=1)
 
-AssignScramblers(_222-r1, 1, 3)
-AssignScramblers(_222-r1, 2, 3)
-AssignScramblers(_222-r1, 3, 3)
-AssignScramblers(_222-r1, 4, 3)
-AssignScramblers(_222-r1, 5, 3)
+AssignScramblersWithMbf(_222-r1, 1, 3)
+AssignScramblersWithMbf(_222-r1, 2, 3)
+AssignScramblersWithMbf(_222-r1, 3, 3)
+AssignScramblersWithMbf(_222-r1, 4, 3)
+AssignScramblersWithMbf(_222-r1, 5, 3)
 AssignCompetitors(_222-r1)
 ReAssignScramblers(_222-r1)
 AssignStaff(
@@ -100,12 +109,16 @@ AssignStaff(
 	DefaultJobs(_222-r1),
 	DefaultStaffScorers(_222-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 2, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 3, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 4, "staff-Chill")
 
-AssignScramblers(_333-r1, 1, 3)
-AssignScramblers(_333-r1, 2, 3)
-AssignScramblers(_333-r1, 3, 3)
-AssignScramblers(_333-r1, 4, 3)
-AssignScramblers(_333-r1, 5, 3)
+AssignScramblersWithMbf(_333-r1, 1, 3)
+AssignScramblersWithMbf(_333-r1, 2, 3)
+AssignScramblersWithMbf(_333-r1, 3, 3)
+AssignScramblersWithMbf(_333-r1, 4, 3)
+AssignScramblersWithMbf(_333-r1, 5, 3)
 AssignGroups(_333-r1,
 	Concat(ChillSet(_333-r1), [AssignmentSet("delegates", HasRole("delegate"), In(GroupNumber(), [4, 5]))], OrganizersSet(), DeLaTorreSet(), UkuSet(), TopCompetitorsSet(_333-r1), EveryoneSet()),
 	ScramblingCompetingScorers(_333-r1),
@@ -120,6 +133,10 @@ AssignStaff(
 	DefaultJobs(_333-r1),
 	DefaultStaffScorers(_333-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 2, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 3, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 4, "staff-Chill")
 
 AssignScramblers(_skewb-r1, 1, 3)
 AssignScramblers(_skewb-r1, 2, 3)
@@ -133,6 +150,8 @@ AssignStaff(
 	DefaultJobs(_skewb-r1),
 	DefaultStaffScorers(_skewb-r1)
 )
+ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 2, "staff-Chill")
 
 Table(
   Sort(Persons(Registered()), (LengthOfJobs() / LengthOfJobs("competitor"))),
