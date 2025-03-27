@@ -13,5 +13,5 @@ AssignStaff(
 	DefaultJobs(_pyram-r2),
 	DefaultStaffScorers(_pyram-r2)
 )
-ManuallyAssign(Persons(ChillsEvent(_pyram)), _pyram-r2, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(And(ChillsEvent(_pyram), CompetingInRound(_pyram-r2))), _pyram-r2, "Salón de actos", 1, "staff-Chill")
 AssignStaff(_pyram-r2, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_pyram-r2))

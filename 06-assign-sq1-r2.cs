@@ -13,5 +13,5 @@ AssignStaff(
 	DefaultJobs(_sq1-r2),
 	DefaultStaffScorers(_sq1-r2)
 )
-ManuallyAssign(Persons(ChillsEvent(_sq1)), _sq1-r2, "Salón de actos", 1, "staff-Chill")
+ManuallyAssign(Persons(And(ChillsEvent(_sq1), CompetingInRound(_sq1-r2))), _sq1-r2, "Salón de actos", 1, "staff-Chill")
 AssignStaff(_sq1-r2, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_sq1-r2))
