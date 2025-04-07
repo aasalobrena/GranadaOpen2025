@@ -105,7 +105,12 @@ AssignScramblersWithMbf(_222-r1, 2, 3)
 AssignScramblersWithMbf(_222-r1, 3, 3)
 AssignScramblersWithMbf(_222-r1, 4, 3)
 AssignScramblersWithMbf(_222-r1, 5, 3)
-AssignCompetitors(_222-r1)
+AssignGroups(_222-r1,
+	Concat(ChillSet(_222-r1), DelegatesSet(), OrganizersSet(), DeLaTorreSet(), UkuSet(), EveryoneSet()),
+	ScramblingCompetingScorers(_222-r1),
+	[StationAssignmentRule(true, "ascending", PsychSheetPosition(_222))],
+	overwrite=true
+)
 ReAssignScramblers(_222-r1)
 AssignStaff(
 	_222-r1,
