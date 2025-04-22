@@ -12,7 +12,7 @@ assignment_letter = {
     "dataentry": "DE"
 }
 
-competition_id = "SpanishChampionship2024"
+competition_id = "GranadaOpen2025"
 wcif_url = f"https://www.worldcubeassociation.org/api/v0/competitions/{competition_id}/wcif/public"
 output_dir = "qrs"
 os.makedirs(output_dir, exist_ok=True)
@@ -58,7 +58,7 @@ try:
             if person["wcaId"] is not None:
                 row.extend([person["wcaId"], ""])
             else:
-                row.extend(["NUEVA COMPETIDORA" if female else "NUEVO COMPETIDOR", "RUTA IMAGEN"])
+                row.extend(["NUEVA COMPETIDORA" if female else "NUEVO COMPETIDOR", os.path.abspath("static/newcomer.png")])
 
             if "organizer" in person["roles"]:
                 if "delegate" in person["roles"]:
