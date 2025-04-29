@@ -131,7 +131,7 @@ AssignScramblersWithMbf(_333-r1, 3, 3)
 AssignScramblersWithMbf(_333-r1, 4, 3)
 AssignScramblersWithMbf(_333-r1, 5, 3)
 AssignGroups(_333-r1,
-	Concat(ChillSet(_333-r1), [AssignmentSet("delegates", HasRole("delegate"), In(GroupNumber(), [4, 5]))], OrganizersSet(), DeLaTorreSet(), UkuSet(), TopCompetitorsSet(_333-r1), EveryoneSet()),
+	Concat(ChillSet(_333-r1), [AssignmentSet("delegates", HasRole("delegate"), In(GroupNumber(), [4, 5]))], OrganizersSet(), DeLaTorreSet(), UkuSet(), EveryoneSet()),
 	ScramblingCompetingScorers(_333-r1),
 	[StationAssignmentRule(true, "ascending", PsychSheetPosition(_333))],
 	overwrite=true
