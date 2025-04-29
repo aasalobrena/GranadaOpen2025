@@ -94,7 +94,9 @@ try:
                                 if assignment["assignmentCode"] == "competitor":
                                     row.append(activity["activityCode"].split("-")[-1][1:])
                                     flag = True
-                                else:   
+                                elif assignment["assignmentCode"] == "staff-Chill":
+                                    staff_assignments = "Chill, "
+                                else:
                                     staff_assignments += f"{assignment_letter[assignment["assignmentCode"][6:]]}{activity["activityCode"].split("-")[-1][1:]}, "
                 if not flag:
                     row.append("")
