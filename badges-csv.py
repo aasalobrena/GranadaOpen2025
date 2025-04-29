@@ -65,12 +65,12 @@ try:
                     row.append("DELEGADA Y ORGANIZADORA" if female else "DELEGADO Y ORGANIZADOR")
                 else:
                     row.append("ORGANIZADORA" if female else "ORGANIZADOR")
-            elif not person["registration"]["isCompeting"]:
-                row.append("VOLUNTARIA" if female else "VOLUNTARIO")
             elif "delegate" in person["roles"]:
                 row.append("DELEGADA" if female else "DELEGADO")
-            else:
+            elif person["registration"]["isCompeting"]:
                 row.append("COMPETIDORA" if female else "COMPETIDOR")
+            else:
+                row.append("VOLUNTARIA" if female else "VOLUNTARIO")
 
             row.append(Path.cwd() / path)
             assignments = person["assignments"]
