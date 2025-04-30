@@ -8,7 +8,7 @@ Define("CompetitorsPerGroup",
 # Useful Booleans(Person)
 
 Define("ChillsEvent", (StringProperty("chill") == EventId({1, Event})))
-Define("CanStaff", And(Registered(), Not(HasRole("delegate")), Not(HasRole("trainee-delegate")), Not(HasRole("organizer")), (WcaId() != "2013ROCA01"), (WcaId() != "2014TEJA07")))
+Define("CanStaff", And(Registered(), IsCompeting(), Not(HasRole("delegate")), Not(HasRole("trainee-delegate")), Not(HasRole("organizer")), (WcaId() != "2013ROCA01"), (WcaId() != "2014TEJA07")))
 Define("CanStaffEvent", And(CanStaff(), Not(ChillsEvent({1, Event}))))
 Define("IsInTop25Psych", And(CompetingIn({1, Event}), (PsychSheetPosition({1, Event}) < (0.25 * Length(Persons(CompetingIn({1, Event})))))))
 Define("CanScrambleEvent", And(CanStaffEvent({1, Event}), Or(IsInTop25Psych({1, Event}), And(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), IsInTop25Psych(_333)))))
