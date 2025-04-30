@@ -152,6 +152,7 @@ AssignStaff(_333-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry"
 AssignScramblers(_skewb-r1, 1, 3)
 AssignScramblers(_skewb-r1, 2, 3)
 AssignScramblers(_skewb-r1, 3, 3)
+AssignScramblers(_skewb-r1, 4, 3)
 AssignCompetitors(_skewb-r1)
 ReAssignScramblers(_skewb-r1)
 AssignStaff(
@@ -163,6 +164,7 @@ AssignStaff(
 )
 ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 2, "staff-Chill")
+ManuallyAssign(Persons(ChillsEvent(_skewb)), _skewb-r1, "Salón de actos", 3, "staff-Chill")
 AssignStaff(_skewb-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_skewb-r1))
 
 # 25 is other-awards
