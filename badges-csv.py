@@ -12,10 +12,36 @@ assignment_letter = {
     "dataentry": "DE"
 }
 
+def generate_qr(link, output_path):
+    qr = qrcode.QRCode(
+        version=None,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=3,
+        border=1,
+    )
+    qr.add_data(link)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="white", back_color="black").convert("RGBA")
+    qr_data = img.getdata()
+    qr_new_data = []
+
+    for item in qr_data:
+        if item[:3] == (0, 0, 0):
+            qr_new_data.append((0, 0, 0, 0))
+        else:
+            qr_new_data.append(item)
+
+    img.putdata(qr_new_data)
+    img.save(output_path)
+
 competition_id = "GranadaOpen2025"
 wcif_url = f"https://www.worldcubeassociation.org/api/v0/competitions/{competition_id}/wcif/public"
 output_dir = "qrs"
 os.makedirs(output_dir, exist_ok=True)
+
+link = f"https://live.worldcubeassociation.org/link/competitions/{competition_id}/"
+path = os.path.join(output_dir, "live.png")
+generate_qr(link, path)
 
 try:
     response = requests.get(wcif_url)
@@ -31,27 +57,9 @@ try:
     for person in wcif["persons"]:
         if person["registrantId"] is not None:
             link = f"https://www.competitiongroups.com/competitions/{competition_id}/persons/{person["registrantId"]}"
-            qr = qrcode.QRCode(
-                version=None,
-                error_correction=qrcode.constants.ERROR_CORRECT_L,
-                box_size=3,
-                border=1,
-            )
-            qr.add_data(link)
-            qr.make(fit=True)
-            img = qr.make_image(fill_color="black", back_color="white").convert("RGBA")
-            qr_data = img.getdata()
-            qr_new_data = []
-
-            for item in qr_data:
-                if item[:3] == (255, 255, 255):
-                    qr_new_data.append((255, 255, 255, 0))
-                else:
-                    qr_new_data.append(item)
-
-            img.putdata(qr_new_data)
             path = os.path.join(output_dir, f"{person["registrantId"]}.png")
-            img.save(path)
+            generate_qr(link, path)
+
             row = [f"ID: {person["registrantId"]}", f"{person["name"]}"]
             female = person["gender"] == "f"
 
@@ -112,4 +120,6 @@ try:
 
 except Exception as e:
     print(f'Error: {e}')
+
+
 
