@@ -97,7 +97,8 @@ ManuallyAssignActivity(8, Persons(In("Otro", ArrayProperty("food"))), "staff-Otr
 
 # 26 is other-multi
 ManuallyAssignActivity(26, Persons(CompetingIn(_333mbf)))
-AssignGroups(_333mbf-r1, EveryoneSet(), attemptNumber=1)
+# 27 is 333mbf-r1-a1
+ManuallyAssignActivity(27, Persons(CompetingIn(_333mbf)))
 
 AssignScramblersWithMbf(_222-r1, 1, 3)
 AssignScramblersWithMbf(_222-r1, 2, 3)
