@@ -7,12 +7,14 @@ Define("CompetitorsPerGroup",
 
 # Useful Booleans(Person)
 
+Define("MbfJudges", [2010GARC02, 2023OSOR03, 2024DIAZ10])
+Define("HasMbfAssignments", Or(CompetingIn(_333mbf), In(MbfJudges())))
 Define("ChillsEvent", (StringProperty("chill") == EventId({1, Event})))
 Define("CanStaff", And(Registered(), IsCompeting(), Not(HasRole("delegate")), Not(HasRole("trainee-delegate")), Not(HasRole("organizer")), (WcaId() != "2013ROCA01"), (WcaId() != "2014TEJA07")))
 Define("CanStaffEvent", And(CanStaff(), Not(ChillsEvent({1, Event}))))
 Define("IsInTop25Psych", And(CompetingIn({1, Event}), (PsychSheetPosition({1, Event}) < (0.25 * Length(Persons(CompetingIn({1, Event})))))))
 Define("CanScrambleEvent", And(CanStaffEvent({1, Event}), Or(IsInTop25Psych({1, Event}), And(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), IsInTop25Psych(_333)))))
-Define("CanScrambleEventRelaxed", In(Slice(Sort(Persons(And(CanStaffEvent({1, Event}), CompetingIn({1, Event}), If({3, Boolean}, Not(CompetingIn(_333mbf)), true))), If(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), PsychSheetPosition(_333), PsychSheetPosition({1, Event}))), 0, {2, Number})))
+Define("CanScrambleEventRelaxed", In(Slice(Sort(Persons(And(CanStaffEvent({1, Event}), CompetingIn({1, Event}), If({3, Boolean}, Not(HasMbfAssignments()), true))), If(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), PsychSheetPosition(_333), PsychSheetPosition({1, Event}))), 0, {2, Number})))
 Define("IsTopScrambler", (NumberProperty(("scrambles-" + RoundId({1, Round}))) == Length(Groups({1, Round}))))
 # USAR ESTOS EN PROD
 # Define("IsTopCompetitor", If((RoundNumber({1, Round}) == 1), (PsychSheetPosition(EventForRound({1, Round})) <= CompetitorsPerGroup({1, Round})), (RoundPosition({1, Round}) <= CompetitorsPerGroup({1, Round}))))
@@ -80,9 +82,9 @@ Define("AssignScramblersWithMbf",
 			{1, Round},
 			(GroupNumber() == {2, Number}),
 			If(
-				(Length(Persons(And(CanScrambleEvent(EventForRound({1, Round})), CompetingIn(_333mbf)))) >= ({3, Number} * Length(Groups({1, Round})))),
-				Persons(And(CanScrambleEvent(EventForRound({1, Round})), (NumJobsInRound({1, Round}, "scrambler") == 0), Not(CompetingIn(_333mbf)))),
-				Persons(And(CanScrambleEventRelaxed(EventForRound({1, Round}), ({3, Number} * Length(Groups({1, Round}))), true), (NumJobsInRound({1, Round}, "scrambler") == 0), Not(CompetingIn(_333mbf))))
+				(Length(Persons(And(CanScrambleEvent(EventForRound({1, Round})), HasMbfAssignments()))) >= ({3, Number} * Length(Groups({1, Round})))),
+				Persons(And(CanScrambleEvent(EventForRound({1, Round})), (NumJobsInRound({1, Round}, "scrambler") == 0), Not(HasMbfAssignments()))),
+				Persons(And(CanScrambleEventRelaxed(EventForRound({1, Round}), ({3, Number} * Length(Groups({1, Round}))), true), (NumJobsInRound({1, Round}, "scrambler") == 0), Not(HasMbfAssignments())))
 			),
 			[Job("scrambler", {3, Number})],
 			DefaultStaffScorers({1, Round})
@@ -123,6 +125,13 @@ Define("DefaultJobs",
 		Job("runner", 3, eligibility=CanStaffEvent(EventForRound({1, Round}))),
 		Job("judge", CompetitorsPerGroup({1, Round}), eligibility=CanStaffEvent(EventForRound({1, Round}))),
 		Job("delegate", 1, eligibility=Or(HasRole("delegate"), HasRole("trainee-delegate")))
+	]
+)
+
+Define("MbfJobs",
+	[
+		Job("runner", 3, eligibility=CanStaffEvent(EventForRound({1, Round}))),
+		Job("judge", CompetitorsPerGroup({1, Round}), eligibility=CanStaffEvent(EventForRound({1, Round})))
 	]
 )
 

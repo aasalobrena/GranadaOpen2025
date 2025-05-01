@@ -99,6 +99,7 @@ ManuallyAssignActivity(8, Persons(In("Otro", ArrayProperty("food"))), "staff-Otr
 ManuallyAssignActivity(26, Persons(CompetingIn(_333mbf)))
 # 27 is 333mbf-r1-a1
 ManuallyAssignActivity(27, Persons(CompetingIn(_333mbf)))
+ManuallyAssignActivity(27, MbfJudges(), "staff-judge")
 
 AssignScramblersWithMbf(_222-r1, 1, 3)
 AssignScramblersWithMbf(_222-r1, 2, 3)
@@ -106,7 +107,7 @@ AssignScramblersWithMbf(_222-r1, 3, 3)
 AssignScramblersWithMbf(_222-r1, 4, 3)
 AssignScramblersWithMbf(_222-r1, 5, 3)
 AssignGroups(_222-r1,
-	Concat(ChillSet(_222-r1), DelegatesSet(), OrganizersSet(), DeLaTorreSet(), UkuSet(), EveryoneSet()),
+	Concat(ChillSet(_222-r1), [AssignmentSet("mbf", HasMbfAssignments(), In(GroupNumber(), [1, 2, 3]))], DelegatesSet(), OrganizersSet(), DeLaTorreSet(), UkuSet(), EveryoneSet()),
 	ScramblingCompetingScorers(_222-r1),
 	[StationAssignmentRule(true, "ascending", PsychSheetPosition(_222))],
 	overwrite=true
@@ -115,15 +116,15 @@ ReAssignScramblers(_222-r1)
 AssignStaff(
 	_222-r1,
 	true,
-	Persons(true),
-	DefaultJobs(_222-r1),
+	Persons(Not(HasMbfAssignments())),
+	MbfJobs(_222-r1),
 	DefaultStaffScorers(_222-r1)
 )
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 2, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 3, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_222)), _222-r1, "Salón de actos", 4, "staff-Chill")
-AssignStaff(_222-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_222-r1))
+AssignStaff(_222-r1, true, Persons(And(HasRole("staff-dataentry"), Not(HasMbfAssignments()))), [Job("dataentry", 1)], DefaultStaffScorers(_222-r1))
 
 AssignScramblersWithMbf(_333-r1, 1, 3)
 AssignScramblersWithMbf(_333-r1, 2, 3)
@@ -131,7 +132,7 @@ AssignScramblersWithMbf(_333-r1, 3, 3)
 AssignScramblersWithMbf(_333-r1, 4, 3)
 AssignScramblersWithMbf(_333-r1, 5, 3)
 AssignGroups(_333-r1,
-	Concat(ChillSet(_333-r1), [AssignmentSet("delegates", HasRole("delegate"), In(GroupNumber(), [4, 5]))], OrganizersSet(), DeLaTorreSet(), UkuSet(), EveryoneSet()),
+	Concat(ChillSet(_333-r1), [AssignmentSet("mbf", HasMbfAssignments(), (GroupNumber() == 4)), AssignmentSet("delegates", HasRole("delegate"), In(GroupNumber(), [4, 5]))], OrganizersSet(), DeLaTorreSet(), UkuSet(), EveryoneSet()),
 	ScramblingCompetingScorers(_333-r1),
 	[StationAssignmentRule(true, "ascending", PsychSheetPosition(_333))],
 	overwrite=true
@@ -140,15 +141,15 @@ ReAssignScramblers(_333-r1)
 AssignStaff(
 	_333-r1,
 	true,
-	Persons(true),
-	DefaultJobs(_333-r1),
+	Persons(Not(HasMbfAssignments())),
+	MbfJobs(_333-r1),
 	DefaultStaffScorers(_333-r1)
 )
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 1, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 2, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 3, "staff-Chill")
 ManuallyAssign(Persons(ChillsEvent(_333)), _333-r1, "Salón de actos", 4, "staff-Chill")
-AssignStaff(_333-r1, true, Persons(HasRole("staff-dataentry")), [Job("dataentry", 1)], DefaultStaffScorers(_333-r1))
+AssignStaff(_333-r1, true, Persons(And(HasRole("staff-dataentry"), Not(HasMbfAssignments()))), [Job("dataentry", 1)], DefaultStaffScorers(_333-r1))
 
 AssignScramblers(_skewb-r1, 1, 3)
 AssignScramblers(_skewb-r1, 2, 3)
