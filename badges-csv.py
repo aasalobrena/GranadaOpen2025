@@ -43,6 +43,10 @@ link = f"https://live.worldcubeassociation.org/link/competitions/{competition_id
 path = os.path.join(output_dir, "live.png")
 generate_qr(link, path)
 
+link = f"https://www.competitiongroups.com/competitions/{competition_id}"
+path = os.path.join(output_dir, "groups.png")
+generate_qr(link, path)
+
 try:
     response = requests.get(wcif_url)
     response.raise_for_status()
