@@ -1,6 +1,6 @@
 #include "helpers.cs"
 
-AddResults(_333-r2, Persons((PsychSheetPosition(_333) <= 32)))
+# AddResults(_333-r2, Persons((PsychSheetPosition(_333) <= 32)))
 
 AssignScramblers(_333-r2, 1, 3)
 AssignScramblers(_333-r2, 2, 3)

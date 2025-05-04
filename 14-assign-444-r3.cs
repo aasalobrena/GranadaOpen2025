@@ -1,6 +1,6 @@
 #include "helpers.cs"
 
-AddResults(_444-r3, Persons((PsychSheetPosition(_444) <= 10)))
+# AddResults(_444-r3, Persons((PsychSheetPosition(_444) <= 10)))
 
 AssignGroups(_444-r3, EveryoneSet(), stationRules=[StationAssignmentRule(true, "ascending", RoundPosition(_444-r2))])
 AssignStaff(

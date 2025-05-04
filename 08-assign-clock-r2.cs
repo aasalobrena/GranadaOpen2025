@@ -1,6 +1,6 @@
 #include "helpers.cs"
 
-AddResults(_clock-r2, Persons((PsychSheetPosition(_clock) <= 10)))
+# AddResults(_clock-r2, Persons((PsychSheetPosition(_clock) <= 10)))
 
 AssignGroups(_clock-r2, EveryoneSet(), stationRules=[StationAssignmentRule(true, "ascending", RoundPosition(_clock-r1))])
 AssignStaff(

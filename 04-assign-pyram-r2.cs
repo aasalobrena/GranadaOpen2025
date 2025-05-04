@@ -1,6 +1,6 @@
 #include "helpers.cs"
 
-AddResults(_pyram-r2, Persons((PsychSheetPosition(_pyram) <= 32)))
+# AddResults(_pyram-r2, Persons((PsychSheetPosition(_pyram) <= 32)))
 
 AssignScramblers(_pyram-r2, 1, 3)
 AssignScramblers(_pyram-r2, 2, 3)

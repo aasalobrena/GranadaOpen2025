@@ -17,11 +17,11 @@ Define("CanScrambleEvent", And(CanStaffEvent({1, Event}), Or(IsInTop25Psych({1, 
 Define("CanScrambleEventRelaxed", In(Slice(Sort(Persons(And(CanStaffEvent({1, Event}), CompetingIn({1, Event}), If({3, Boolean}, Not(HasMbfAssignments()), true))), If(Or((EventId({1, Event}) == "333bf"), (EventId({1, Event}) == "333oh")), PsychSheetPosition(_333), PsychSheetPosition({1, Event}))), 0, {2, Number})))
 Define("IsTopScrambler", (NumberProperty(("scrambles-" + RoundId({1, Round}))) == Length(Groups({1, Round}))))
 # USAR ESTOS EN PROD
-# Define("IsTopCompetitor", If((RoundNumber({1, Round}) == 1), (PsychSheetPosition(EventForRound({1, Round})) <= CompetitorsPerGroup({1, Round})), (RoundPosition({1, Round}) <= CompetitorsPerGroup({1, Round}))))
-# Define("ScramblesFinal", And((Length(Persons(CompetingInRound({1, Round}))) < RoundPosition(RoundForEvent((RoundNumber({1, Round}) - 1), EventForRound({1, Round})))), (RoundPosition(RoundForEvent((RoundNumber({1, Round}) - 1), EventForRound({1, Round}))) <= (Length(Persons(CompetingInRound({1, Round}))) + {2, Number}))))
+Define("IsTopCompetitor", If((RoundNumber({1, Round}) == 1), (PsychSheetPosition(EventForRound({1, Round})) <= CompetitorsPerGroup({1, Round})), (RoundPosition({1, Round}) <= CompetitorsPerGroup({1, Round}))))
+Define("ScramblesFinal", And((Length(Persons(CompetingInRound({1, Round}))) < RoundPosition(RoundForEvent((RoundNumber({1, Round}) - 1), EventForRound({1, Round})))), (RoundPosition(RoundForEvent((RoundNumber({1, Round}) - 1), EventForRound({1, Round}))) <= (Length(Persons(CompetingInRound({1, Round}))) + {2, Number}))))
 # USAR ESTOS EN DEV
-Define("IsTopCompetitor", (PsychSheetPosition(EventForRound({1, Round})) <= CompetitorsPerGroup({1, Round})))
-Define("ScramblesFinal", And((Length(Persons(CompetingInRound({1, Round}))) < PsychSheetPosition(EventForRound({1, Round}))), (PsychSheetPosition(EventForRound({1, Round})) <= (Length(Persons(CompetingInRound({1, Round}))) + {2, Number}))))
+# Define("IsTopCompetitor", (PsychSheetPosition(EventForRound({1, Round})) <= CompetitorsPerGroup({1, Round})))
+# Define("ScramblesFinal", And((Length(Persons(CompetingInRound({1, Round}))) < PsychSheetPosition(EventForRound({1, Round}))), (PsychSheetPosition(EventForRound({1, Round})) <= (Length(Persons(CompetingInRound({1, Round}))) + {2, Number}))))
 
 # AssignmentSets
 

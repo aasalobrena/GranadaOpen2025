@@ -8,7 +8,7 @@ ManuallyAssignActivity(2, Persons(IsNull(WcaId())), "staff-Alumno")
 ManuallyAssignActivity(2, [2018CAST11], "staff-judge")
 ManuallyAssignActivity(2, [2010GARC02])
 
-Map(Events(), AddResults(RoundForEvent(1), Persons(CompetingIn())))
+# Map(Events(), AddResults(RoundForEvent(1), Persons(CompetingIn())))
 
 AssignScramblers(_pyram-r1, 1, 3)
 AssignScramblers(_pyram-r1, 2, 3)
