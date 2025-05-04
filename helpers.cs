@@ -7,7 +7,7 @@ Define("CompetitorsPerGroup",
 
 # Useful Booleans(Person)
 
-Define("MbfJudges", [2010GARC02, 2023OSOR03, 2024DIAZ10])
+Define("MbfJudges", [2010GARC02, 2016JABA02, 2023OSOR03, 2024DIAZ10])
 Define("HasMbfAssignments", Or(CompetingIn(_333mbf), In(MbfJudges())))
 Define("ChillsEvent", (StringProperty("chill") == EventId({1, Event})))
 Define("CanStaff", And(Registered(), IsCompeting(), Not(HasRole("delegate")), Not(HasRole("trainee-delegate")), Not(HasRole("organizer")), (WcaId() != "2013ROCA01"), (WcaId() != "2014TEJA07")))
