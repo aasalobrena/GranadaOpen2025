@@ -4,9 +4,10 @@
 ManuallyAssignActivity(1, Persons(true))
 
 # 2 is other-tutorial
-ManuallyAssignActivity(2, Persons(IsNull(WcaId())), "staff-Alumno")
-ManuallyAssignActivity(2, [2018CAST11], "staff-judge")
-ManuallyAssignActivity(2, [2010GARC02])
+ManuallyAssignActivity(2, Persons(And(IsNull(WcaId())), (Country() == "ES")), "staff-Alumno")
+ManuallyAssignActivity(2, Persons(And(IsNull(WcaId())), (Country() != "ES")), "staff-Learner")
+ManuallyAssignActivity(2, [2016GALA04, 2015SANC18])
+ManuallyAssignActivity(2, [2018CAST11, 2010GARC02], "staff-judge")
 
 # Map(Events(), AddResults(RoundForEvent(1), Persons(CompetingIn())))
 
